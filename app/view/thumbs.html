@@ -1,0 +1,19 @@
+<div class="order-wrap">
+	<div style="display: table-cell;"><span class="order-text" style="text-align: left !important"><strong>Order By:</strong></span></div>
+	<div style="display: table-cell;""><span class="order-text" id="order-st" ng-click="orderBy('show_title', 'order-st')">A - Z <span class="glyphicon"></span></span></div>
+	<div style="display: table-cell;""><span class="order-text" id="order-r" ng-click="orderBy('rating', 'order-r')">Rating <span class="glyphicon"></span></span></div>
+	<div style="display: table-cell;""><span class="order-text" id="order-rl" ng-click="orderBy('release_year', 'order-rl')">Release Year <span class="glyphicon"></span></span></div>
+</div>
+
+<br>
+
+<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12" ng-repeat="thumb in thumbList | orderBy:orderCrit:orderDir" style="margin: 5px 0px; padding: 0; color: white;">
+	<img class="thumb-image pull-right" ng-src="{{thumb.poster}}" onerror="this.src='src/notfound.jpg'">
+	<div class="thumb-cover" ng-click="thumbFocus(thumb)">
+		<div class="thumb-title">{{thumb.show_title}}</div>
+		<div class="thumb-sub-title">{{thumb.release_year}} - {{thumb.rating}}</div>
+		<div class="thumb-director"> Directed by: {{thumb.director}}</div>
+	</div>
+	<span ng-click="manageFavorites(favorites, thumb); thumb.is_favorite = !thumb.is_favorite" ng-class="{'thumb-star-active': thumb.is_favorite}" class="glyphicon glyphicon-star thumb-star"></span>
+	
+</div>

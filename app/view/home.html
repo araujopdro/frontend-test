@@ -1,0 +1,51 @@
+
+<div class="col-lg-4 col-lg-offset-4  col-md-10 col-md-offset-1  col-sm-12">
+	<img src="src/logo.png" class="img-responsive header-logo" alt="Responsive image">
+	<p class="lead header-text">Type in the name of the <strong>Movie</strong> or <strong>Director</strong> you're looking for:</p>
+</div>
+</br>
+</br>
+<div class="col-lg-8 col-lg-offset-2  col-md-10 col-md-offset-1  col-sm-12">
+	<div ng-click="checkFavorites(favorites)" ng-class="{'favorites-button-disabled': favorites.length === 0, 'favorites-button': favorites.length > 0}">
+		<span class="glyphicon glyphicon-star pull-left star-icon"></span>
+		<span class="lead sub-header-text">My Favorites</span>
+	</div>
+	<br>
+	<div class="search-bar">
+			<input class="form-control search-input" type="text" style="display: table-cell;"  placeholder="Movie / Director's Name" ng-model="search_input" ng-model-options='{ debounce: 1000 }' ng-change='search(search_input, toggle_search)' aria-describedby="basic-addon1">
+		    <img src="src/pageloader.gif" ng-show="waiting_for_request" class="loading-img">
+		    <label ng-show="toggle_search" class="search-label-dir">Director</label>
+		    <label ng-show="!toggle_search" class="search-label-mov">&nbsp;Movie&nbsp;</label>
+
+		    <label class="switch" style="display: table-cell;">
+			  <input type="checkbox" ng-model="toggle_search" ng-click="search(search_input, toggle_search)">
+			  <div class="slider round"></div>
+			</label>
+    </div>
+
+	<hr/>
+
+	<div ng-show="result == 200 && !focusedThumb" ng-include="'view/thumbs.html'"></div>
+
+	<div ng-show="result == 'error' && !focusedThumb" ng-include="'view/404.html'"></div>
+</div>
+
+<div ng-show="focusedThumb"  style="height: 100%; width: 100%; top: 0; left: 0;">
+  	<div class="focus-modal col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12">
+		<img class="col-lg-4 col-md-2 col-sm-modal col-sm-modal-img" ng-src="{{focusedThumb.poster}}" onerror="this.src='src/notfound.jpg'">
+		<div class="col-lg-8 col-md-10 col-sm-modal col-sm-modal-content">
+			<br>
+			<br>
+			<h2>{{focusedThumb.show_title}} - <strong>Rating:</strong> {{focusedThumb.rating}}</h2>
+			<h3>{{focusedThumb.release_year}} - {{focusedThumb.category}}</h3>
+			<br>
+			<div class="lead">&nbsp;&nbsp;&nbsp;<strong>Summary:</strong>  {{focusedThumb.summary}}</div>
+			<div>&nbsp;&nbsp;&nbsp;<strong>Show Cast:</strong> {{focusedThumb.show_cast}}</div>
+			</br>
+			<div>&nbsp;&nbsp;&nbsp;<strong>Directed by:</strong>  {{focusedThumb.director}}</div>
+			<span ng-click="manageFavorites(favorites, focusedThumb); focusedThumb.is_favorite = !focusedThumb.is_favorite" ng-class="{'thumb-star-active': focusedThumb.is_favorite}" class="glyphicon glyphicon-star thumb-star"></span>
+		<span ng-click="unFocusThumb()" class="glyphicon glyphicon-remove close-focus"></span>
+
+		</div>
+  	</div>
+</div>	

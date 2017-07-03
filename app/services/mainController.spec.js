@@ -18,14 +18,5 @@ describe('MainController Test', function() {
   	it('MainController should exist', function() {
 		expect(scope).toBeDefined();    
 	});
-	it('MainController.app should exist', function() {
-		expect(scope.app).toBeDefined();    
-	});
-  	describe('MainController Get By Title', function() {
-
-		it('MainController.get by title should exist', function() {
-			expect(scope.requestHandler.getTitle).toBeDefined();    
-		});
-  	});
 	
 });

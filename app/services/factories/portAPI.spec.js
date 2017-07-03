@@ -12,13 +12,13 @@
 
     describe('stringProcessing function test', function(){
         it('stringProcessing should transform \s in to %20', function(){
-            expect(portAPI.stringProcessing('Pudim Amassado')).toBe('Pudim%20Amassado');
+            expect(portAPI.stringProcessing('Filme')).toBe('Filme');
         });
         it('stringProcessing should transform \s in to %20', function(){
-            expect(portAPI.stringProcessing('Pudim Amassado 1')).toBe('Pudim%20Amassado%201');
+            expect(portAPI.stringProcessing('Filme A1')).toBe('Filme%20A1');
         });
         it('stringProcessing should transform \s in to %20', function(){
-            expect(portAPI.stringProcessing('Pudim Amassado 2')).toBe('Pudim%20Amassado%202');
+            expect(portAPI.stringProcessing('Filme A 2')).toBe('Filme%20A%202');
         });
         it('stringProcessing should transform \s in to %20', function(){
             expect(portAPI.stringProcessing('Quentin Tarantino')).toBe('Quentin%20Tarantino');
